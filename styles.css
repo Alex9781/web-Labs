@@ -51,7 +51,7 @@ main p{
 }
 
 aside{
-    float: inline-end;
+    float: right;
     max-width: 20%;
     margin: 0% 0% 3% 3%;
 }
