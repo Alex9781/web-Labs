@@ -5,11 +5,11 @@ body{
 }
 
 .header{
-    background-color: cyan;
+    background-color: darkkhaki;
     color: black;
-    margin: 0%;
-    padding: 0%;
+    padding: 10px 0;
     font-weight: bold;
+    font-size: 24px;
 }
 
 .main-menu ul{
@@ -37,22 +37,33 @@ main p{
 }
 
 .cat{
-    height: 250px;
-    text-align: center;
-    padding: 0%;
-    margin: 3rem 0;
+    padding: 0;
+    margin: 0;
+    height: 350px;
+    /*text-align: center;
     background-image: url(images/bg.jpeg);
     background-repeat: no-repeat;
-    background-position: center;
+    background-position: center; */
 }
 
 .cat img{
     height: 100%;
 }
 
+aside{
+    float: inline-end;
+    max-width: 20%;
+    margin: 0% 0% 3% 3%;
+}
+
+section ul{
+    padding: 0 20px;
+    margin: 0;
+}
+
 .footer{
-    background-color: cyan;
+    background-color: darkkhaki;
     color: black;
-    margin: 0%;
-    padding: 0%;
+    padding: 10px 0;
+    font-weight: bold;
 }
