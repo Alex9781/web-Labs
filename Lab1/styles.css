@@ -40,7 +40,7 @@ main p{
 .cat{
     padding: 0;
     margin: 0;
-    height: 350px;
+    max-height: 350px;
     /*text-align: center;
     background-image: url(images/bg.jpeg);
     background-repeat: no-repeat;
