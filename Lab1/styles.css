@@ -68,3 +68,32 @@ section ul{
     padding: 10px 0;
     font-weight: bold;
 }
+
+.bliny1{
+    float: left;
+    width: 45%;
+    margin: 10px;
+}
+
+.bliny1 img{
+    width: 100%;
+}
+
+.bliny2{
+    float: right;
+    width: 45%;
+    margin: 10px;
+}
+
+.bliny2 img{
+    width: 100%;
+}
+
+.cat2{
+    width: 45%;
+    margin: 10px;
+}
+
+.cat2 img{
+    width: 100%;
+}
