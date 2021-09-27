@@ -71,6 +71,7 @@ main{
     text-align: center;
     background-color: wheat;
     border: 10px solid darkkhaki;
+    border-radius: 20px;
 }
 
 .login p{
