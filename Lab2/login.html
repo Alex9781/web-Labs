@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <title>Вход в блинчики</title>
+</head>
+
+<body>
+    <header class="header">
+        <div class="conteiner">
+            <nav class="main-menu">
+                <ul>
+                    <li><a href="http://lab1.std-1558.ist.mospolytech.ru/#about">Блинчики</a></li>
+                    <li><a href="./index.html#form">Оценка бличиков</a></li>
+                    <li><a href="#login">Вход в блинчики</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main id="login-main">
+        <div class="login">
+            <form method="POST" action="https://httpbin.org/post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <p><label for="login">Введите логин</label></p>
+                    <input type="text" id="login" name="login" placeholder="login" required>
+                </div>
+                <div class="form-group">
+                    <p><label for="pass">Введите пароль</label></p>
+                    <input type="password" id="pass" name="pass" required>
+                </div>
+                <div class="form-group">
+                    <input type="checkbox" name="agreement" id="agreement" required>
+                    <label for="agreement">Запомнить меня</label>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Войти">
+                </div>
+            </form>
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="conteiner">
+            &copy; 2021 Змиёв А. Ю.
+        </div>
+    </footer>
+</body>
+
+</html>

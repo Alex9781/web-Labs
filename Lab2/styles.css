@@ -1,3 +1,78 @@
+body{
+    margin: 0%;
+    font-size: 20px;
+    font-family: 'Roboto', sans-serif;
+}
+
+main{
+    max-width: 95%;
+    margin: 0 auto;
+}
+
 .form-group{
     margin-bottom: 15px;
+}
+
+.conteiner{
+    max-width: 95%;
+    margin: 0 auto;    
+}
+
+.header{
+    background-color: darkkhaki;
+    color: black;
+    padding: 10px 0;
+    font-weight: bold;
+    font-size: 24px;
+    text-align: center;
+}
+
+.main-menu ul{
+    padding: 0%;
+    margin: auto;
+}
+
+.main-menu li{
+    display: inline;
+    margin-right: 10px;
+}
+
+.main-menu a{
+    text-decoration: none;
+    color: black;
+}
+
+#msg-label{
+    max-width: 500px;
+}
+
+#msg{
+    height: 100px;
+    width: 350px;
+}
+
+.footer{
+    background-color: darkkhaki;
+    color: black;
+    padding: 10px 0;
+    font-weight: bold;
+}
+
+.login{
+    margin: 100px 20%;
+    text-align: center;
+    background-color: wheat;
+    border: 10px solid darkkhaki;
+}
+
+.login p{
+    margin: 5px;
+}
+
+#login-main{
+    margin: 0;
+    padding: 1px;
+    max-width: 100%;
+    background-image: url(./images/background.png);
+    background-size: 100%;
 }
