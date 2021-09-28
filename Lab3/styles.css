@@ -1,0 +1,178 @@
+*, *::before, *::after{
+    box-sizing: border-box;
+}
+
+body{
+    font-size: 20px;
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    min-height: 100vh;
+    position: relative;
+}
+
+body::after{
+    content: "";
+    display: block;
+    height: 49px;
+}
+
+.header{
+    background-color: darkkhaki;
+    padding: 20px;
+    border-bottom: 5px solid red;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.header a{
+    text-decoration: none;
+    color: black;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.header ul{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.header li{
+    display: inline;
+    margin-right: 10px;
+}
+
+.header li:last-child{
+    margin: 0;
+}
+
+.container{
+    margin: 0 auto;
+    width: 95%;
+}
+
+.sidebar-section{
+    margin-bottom: 20px;
+}
+
+.sidebar-section:last-child{
+    margin-bottom: 0;
+}
+
+.sidebar{
+    width: 210px;
+    padding: 20px 20px 20px 0;
+    float: left;
+    position: sticky;
+    top: 69px;
+}
+
+.sidebar-header{
+    font-weight: bold;
+    margin-bottom: 5px;
+    font-size: 1.2rem;
+}
+
+.navigation{
+    float: left;
+}
+
+.profile{
+    float: right;
+}
+
+.clearfix::after{
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.page-content{
+    padding: 20px;
+    margin-left: 200px;
+}
+
+.products-category-header{
+    margin-top: 0;
+}
+
+.product-card{
+    display: inline-block;
+    width: 450px;
+    height: 370px;
+    background-color: darkkhaki;
+    border: 2px solid red;
+    border-radius: 5px;
+    margin: 0 10px 10px 0;
+}
+
+.product-image{
+    float: left;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.product-image img{
+    height: 100%;
+    margin-left: 50%;
+    transform: translateX(-50%);
+}
+
+.product-details{
+    float: right;
+    width: 50%;
+    height: 100%;
+}
+
+.product-header{
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.information{
+    text-align: justify;
+    height: 65%;
+    overflow: hidden;
+    font-size: 0.9rem;
+    padding: 0 2px;
+}
+
+.control{
+    text-align: center;
+}
+
+.control .btn{
+    background-color: blueviolet;
+    color: white;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    cursor: pointer;
+    overflow: hidden;
+    padding: 0;
+}
+
+.control .btn span{
+    padding: 10px 20px;
+    display: inline-block;
+    font-size: 0.8rem;
+}
+
+.control .btn .price{
+    background-color: aqua;
+}
+
+.control .btn .buy{
+    font-weight: bold;
+}
+
+.footer{
+    background-color: darkkhaki;
+    padding: 20px;
+    border-top: 5px solid red;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
