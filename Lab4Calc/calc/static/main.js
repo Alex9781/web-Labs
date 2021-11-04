@@ -1,4 +1,6 @@
-// Функция priority позволяет получить 
+"use strict"
+
+// Функция priority позволяет получить
 // значение приоритета для оператора.
 // Возможные операторы: +, -, *, /.
 
@@ -25,26 +27,26 @@ function isOperation(str) {
     return /^[\+\-\*\/]{1}$/.test(str);
 }
 
-// Функция tokenize принимает один аргумент -- строку
-// с арифметическим выражением и делит его на токены 
-// (числа, операторы, скобки). Возвращаемое значение --
+// Функция tokenize принимает один аргумент — строку
+// с арифметическим выражением и делит его на токены
+// (числа, операторы, скобки). Возвращаемое значение —
 // массив токенов.
 
 function tokenize(str) {
     let tokens = [];
     let lastNumber = '';
-    for (char of str) {
+    for (let char of str) {
         if (isDigit(char) || char == '.') {
             lastNumber += char;
         } else {
-            if(lastNumber.length > 0) {
+            if (lastNumber.length > 0) {
                 tokens.push(lastNumber);
                 lastNumber = '';
             }
-        } 
+        }
         if (isOperation(char) || char == '(' || char == ')') {
             tokens.push(char);
-        } 
+        }
     }
     if (lastNumber.length > 0) {
         tokens.push(lastNumber);
@@ -52,21 +54,21 @@ function tokenize(str) {
     return tokens;
 }
 
-// Функция compile принимает один аргумент -- строку
-// с арифметическим выражением, записанным в инфиксной 
-// нотации, и преобразует это выражение в обратную 
-// польскую нотацию (ОПН). Возвращаемое значение -- 
-// результат преобразования в виде строки, в которой 
-// операторы и операнды отделены друг от друга пробелами. 
-// Выражение может включать действительные числа, операторы 
+// Функция compile принимает один аргумент — строку
+// с арифметическим выражением, записанным в инфиксной
+// нотации, и преобразует это выражение в обратную
+// польскую нотацию (ОПН). Возвращаемое значение —
+// результат преобразования в виде строки, в которой
+// операторы и операнды отделены друг от друга пробелами.
+// Выражение может включать действительные числа, операторы
 // +, -, *, /, а также скобки. Все операторы бинарны и левоассоциативны.
-// Функция реализует алгоритм сортировочной станции 
-// (https://ru.wikipedia.org/wiki/Алгоритм_сортировочной_станции).
+// Функция реализует алгоритм сортировочной станции
+// (https://ru.wikipedia.org/wiki/Алгоритм_сортировочной_..).
 
 function compile(str) {
     let out = [];
     let stack = [];
-    for (token of tokenize(str)) {
+    for (let token of tokenize(str)) {
         if (isNumeric(token)) {
             out.push(token);
         } else if (isOperation(token)) {
@@ -77,7 +79,7 @@ function compile(str) {
         } else if (token == '(') {
             stack.push(token);
         } else if (token == ')') {
-            while (stack.length > 0 && stack[stack.length-1] != '(') {
+            while (stack.length > 0 && stack[stack.length - 1] != '(') {
                 out.push(stack.pop());
             }
             stack.pop();
@@ -89,38 +91,80 @@ function compile(str) {
     return out.join(' ');
 }
 
-// Функция evaluate принимает один аргумент -- строку 
-// с арифметическим выражением, записанным в обратной 
-// польской нотации. Возвращаемое значение -- результат 
-// вычисления выражения. Выражение может включать 
+// Функция evaluate принимает один аргумент — строку
+// с арифметическим выражением, записанным в обратной
+// польской нотации. Возвращаемое значение — результат
+// вычисления выражения. Выражение может включать
 // действительные числа и операторы +, -, *, /.
 // Вам нужно реализовать эту функцию
-// (https://ru.wikipedia.org/wiki/Обратная_польская_запись#Вычисления_на_стеке).
+// (https://ru.wikipedia.org/wiki/Обратная_польская_запис..).
 
 function evaluate(str) {
-    // your code here
+    let polish = tokenize(compile(str));
+    let stack = [];
+    for (const el of polish) {
+        if (isNumeric(el)) {
+            stack.push(Number(el));
+        } else {
+            switch (el) {
+                case '+':
+                    stack.push(stack.pop() + stack.pop());
+                    break;
+                case '-':
+                    let b = stack.pop();
+                    let a = stack.pop();
+                    stack.push(a - b);
+                    break;
+
+                case '*':
+                    stack.push(stack.pop() * stack.pop());
+                    break;
+
+                case '/':
+                    stack.push((stack.pop() / stack.pop()) ** -1);
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
+    return stack.pop().toFixed(2);
 }
 
-// Функция clickHandler предназначена для обработки 
-// событий клика по кнопкам калькулятора. 
+// Функция clickHandler предназначена для обработки
+// событий клика по кнопкам калькулятора.
 // По нажатию на кнопки с классами digit, operation и bracket
-// на экране (элемент с классом screen) должны появляться 
+// на экране (элемент с классом screen) должны появляться
 // соответствующие нажатой кнопке символы.
-// По нажатию на кнопку с классом clear содержимое экрана 
+// По нажатию на кнопку с классом clear содержимое экрана
 // должно очищаться.
-// По нажатию на кнопку с классом result на экране 
-// должен появиться результат вычисления введённого выражения 
+// По нажатию на кнопку с классом result на экране
+// должен появиться результат вычисления введённого выражения
 // с точностью до двух знаков после десятичного разделителя (точки).
-// Реализуйте эту функцию. Воспользуйтесь механизмом делегирования 
-// событий (https://learn.javascript.ru/event-delegation), чтобы 
+// Реализуйте эту функцию. Воспользуйтесь механизмом делегирования
+// событий (https://learn.javascript.ru/event-delegation), чтобы
 // не назначать обработчик для каждой кнопки в отдельности.
 
 function clickHandler(event) {
     // your code here
-}
+    if (event.target.className in { 'key-digit': 0, 'key-operation': 1, 'key-bracket': 2 }) {
+        document.querySelector('.expression').innerHTML += event.target.innerHTML;
+        return;
+    }
 
+    if (event.target.className == 'key-clear') {
+        document.querySelector('.expression').innerHTML = '';
+    }
+
+    if (event.target.className == 'key-result') {
+        document.querySelector('.expression').innerHTML = evaluate(document.querySelector('.expression').innerHTML)
+    }
+}
 
 // Назначьте нужные обработчики событий.
 window.onload = function () {
     // your code here
+    let buttons = document.querySelector('.buttons');
+    buttons.addEventListener('click', clickHandler);
 }

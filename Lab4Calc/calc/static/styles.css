@@ -1,0 +1,67 @@
+html, body, main{
+    height: 100%;
+}
+
+main{
+    display: flex;
+}
+
+.calc-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    margin: auto;
+    height: 500px;
+    width: 500px;
+    border: 2px solid black;
+    box-sizing: border-box;
+    padding: 5px;
+    border-radius: 5%;
+}
+
+.screen{
+    height: 100px;
+}
+
+.buttons{
+    display: flex;
+    align-items: stretch;
+}
+
+.digits{
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    gap: 5px;
+}
+
+.other{
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    gap: 5px;
+    flex-direction: row-reverse;
+}
+
+.buttons button{
+    height: 90px;
+    width: 90px;
+
+    border-radius: 50%;
+    cursor: pointer;
+    border: 1px solid black;
+}
+
+.buttons button:hover{
+    background-color: gainsboro;
+}
+
+.calc-container span, button{
+    font-size: 50px;
+
+}
+
+.digits button:last-child{
+    visibility: hidden;
+}
