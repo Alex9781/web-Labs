@@ -106,25 +106,20 @@ function evaluate(str) {
         if (isNumeric(el)) {
             stack.push(Number(el));
         } else {
-            switch (el) {
-                case '+':
-                    stack.push(stack.pop() + stack.pop());
-                    break;
-                case '-':
-                    let b = stack.pop();
-                    let a = stack.pop();
-                    stack.push(a - b);
-                    break;
+            if (el == "+") stack.push(stack.pop() + stack.pop());
 
-                case '*':
-                    stack.push(stack.pop() * stack.pop());
-                    break;
+            else if (el == "-") {
+                let b = stack.pop();
+                let a = stack.pop();
+                stack.push(a - b);
+            }
 
-                case '/':
-                    stack.push((stack.pop() / stack.pop()) ** -1);
-                    break;
-                default:
-                    break;
+            else if (el == "*") stack.push(stack.pop() * stack.pop());
+
+            else if (el == "/") {
+                let a = stack.pop();
+                let b = stack.pop();
+                stack.push(b / a);
             }
         }
     }
