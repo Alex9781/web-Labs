@@ -109,9 +109,9 @@ function evaluate(str) {
             if (el == "+") stack.push(stack.pop() + stack.pop());
 
             else if (el == "-") {
-                let b = stack.pop();
                 let a = stack.pop();
-                stack.push(a - b);
+                let b = stack.pop();
+                stack.push(b - a);
             }
 
             else if (el == "*") stack.push(stack.pop() * stack.pop());
