@@ -54,7 +54,7 @@ function setPaginationInfo(info) {
     document.querySelector(".current-iterval-end").innerHTML = end;
 }
 
-function createPageBtn(page, classes=[]) {
+function createPageBtn(page, classes = []) {
     let btn = document.createElement('button');
     classes.push('btn');
     btn.classList.add(...classes);
@@ -63,27 +63,27 @@ function createPageBtn(page, classes=[]) {
     return btn;
 }
 
-function renderPaginationelement(info) {
+function renderPaginationElement(info) {
     let btn;
     let paginationContainer = document.querySelector('.pagination');
     paginationContainer.innerHTML = '';
 
     if (info.total_count == 0) return;
-    
+
     btn = createPageBtn(1, ['first-page-btn']);
     btn.innerHTML = 'Первая страница';
     if (info.current_page == 1) {
         btn.style.visibility = 'hiden';
     }
     paginationContainer.append(btn);
-    
+
     let buttonsContainer = document.createElement('div');
     buttonsContainer.classList.add('pages-btns');
     paginationContainer.append(buttonsContainer);
 
     let start = Math.max(info.current_page - 2, 1);
     let end = Math.min(info.current_page + 2, info.total_pages);
-    for (let i = start; i <=end; i++) {
+    for (let i = start; i <= end; i++) {
         buttonsContainer.append(createPageBtn(i, i == info.current_page ? ['active'] : []));
     }
 
@@ -95,32 +95,59 @@ function renderPaginationelement(info) {
     paginationContainer.append(btn);
 }
 
-function downloadData(page = 1) {
+function downloadData(page = 1, search = "") {
     let factsList = document.querySelector(".facts-list");
     let perPage = document.querySelector(".per-page-btn").value;
     let url = new URL(factsList.dataset.url);
     url.searchParams.append("page", page);
     url.searchParams.append("per-page", perPage);
+    url.searchParams.append("q", search);
     let xhr = new XMLHttpRequest();
     xhr.open("GET", url);
     xhr.responseType = "json";
     xhr.onload = function () {
         renderRecords(this.response.records);
         setPaginationInfo(this.response["_pagination"]);
-        renderPaginationelement(this.response["_pagination"]);
+        renderPaginationElement(this.response["_pagination"]);
     };
     xhr.send();
 }
 
 function pageBtnHandler(event) {
     if (event.target.dataset.page) {
-        downloadData(event.target.dataset.page);
+        downloadData(event.target.dataset.page, document.querySelector("#search-field").value);
         window.scrollTo(0, 0);
+    }
+}
+
+function getSuggestion(search) {
+    let url = new URL("http://cat-facts-api.std-900.ist.mospolytech.ru/autocomplete");
+    url.searchParams.append("q", search);
+    let xhr = new XMLHttpRequest();
+    xhr.open("GET", url);
+    xhr.responseType = "json";
+    xhr.onload = function () {
+        renderSuggestions(this.response);
+    };
+    xhr.send();
+}
+
+function renderSuggestions(response) {
+    let suggestions = document.querySelector("#search-suggestions");
+    
+    while (suggestions.firstChild) suggestions.removeChild(suggestions.firstChild);
+
+    for (const i of response) {
+        let option = document.createElement("option");
+        option.value = i; 
+        suggestions.append(option);
     }
 }
 
 window.onload = function () {
     downloadData();
     document.querySelector(".pagination").onclick = pageBtnHandler;
-    document.querySelector(".per-page-btn").onchange = () => { downloadData() };
+    document.querySelector(".per-page-btn").onchange = () => { downloadData(1, document.querySelector("#search-field").value) };
+    document.querySelector(".search-btn").onclick = () => { downloadData(1, document.querySelector("#search-field").value) };
+    document.querySelector("#search-field").oninput = () => { getSuggestion(document.querySelector("#search-field").value) };
 }
