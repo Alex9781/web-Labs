@@ -1,0 +1,33 @@
+.summary {
+    background-color:azure;
+}
+
+.about p {
+    text-align: justify;
+}
+
+.about {
+    background-color: #38B54A;
+}
+
+.contacts {
+    background-color:azure;
+}
+
+.contacts h2 {
+    text-align: center;
+}
+
+.contacts i {
+    color: #38B54A;
+}
+
+.btn-outline-success {
+    color: #38B54A;
+    border-color: #38B54A;
+}
+
+.btn-outline-success:hover {
+    background-color: #38B54A;
+    border-color: #38B54A;
+}
