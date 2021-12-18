@@ -120,6 +120,9 @@ function prepareModalContent(event) {
 }
 
 async function deleteTaskBtnHandler(event) {
+    let form = event.target.closest('.modal').querySelector('form');
+    let taskElement = document.getElementById(form.elements['task-id'].value);
+    
     let data = await deleteData(form.elements['task-id'].value);
 
     if (data) {
@@ -127,8 +130,6 @@ async function deleteTaskBtnHandler(event) {
         return;
     }
 
-    let form = event.target.closest('.modal').querySelector('form');
-    let taskElement = document.getElementById(form.elements['task-id'].value);
 
     let tasksCounterElement = taskElement.closest('.card').querySelector('.tasks-counter');
     tasksCounterElement.innerHTML = Number(tasksCounterElement.innerHTML) - 1;
